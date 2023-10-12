@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import observerPattern.Observer;
 import view.matiere.Metal;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class UsineAile extends Usine {
+public class UsineAile extends Usine implements Observer {
    
     private List <Metal> metals = new ArrayList <>();
     private ImageIcon image;
@@ -62,6 +63,56 @@ public class UsineAile extends Usine {
 
         
         return false;
+    }
+
+    public List<Metal> getMetals() {
+        return this.metals;
+    }
+
+    public void setMetals(List<Metal> metals) {
+        this.metals = metals;
+    }
+
+    public void setImage(ImageIcon image) {
+        this.image = image;
+    }
+
+    public int getNombreMetal() {
+        return this.nombreMetal;
+    }
+
+    public void setNombreMetal(int nombreMetal) {
+        this.nombreMetal = nombreMetal;
+    }
+
+    public int getNombreAile() {
+        return this.nombreAile;
+    }
+
+    public void setNombreAile(int nombreAile) {
+        this.nombreAile = nombreAile;
+    }
+
+    public Point getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    public int getLevelProduction() {
+        return this.levelProduction;
+    }
+
+    public void setLevelProduction(int levelProduction) {
+        this.levelProduction = levelProduction;
+    }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
    
 
