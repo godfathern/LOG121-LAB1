@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 import simulation.matiere.Metal;
 
-public class UsineAile implements Usine {
+public class UsineAile extends Usine {
+   
     private List <Metal> metals = new ArrayList <>();
     private ImageIcon image;
     private int nombreMetal;
@@ -18,11 +19,9 @@ public class UsineAile implements Usine {
     private int levelProduction; //% temps nécessaire à la production a été écoulé
     
 
-    public UsineAile (Point position){
-        this.nombreMetal = 0;
-        this.nombreAile = 0;
-        this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));//violet
-        this.levelProduction = 0;
+  public UsineAile(String type, String id, String x2, String y2) {
+        super(type, id, x2, y2);
+        //TODO Auto-generated constructor stub
     }
 
     public void updateImage(){
@@ -64,40 +63,8 @@ public class UsineAile implements Usine {
         
         return false;
     }
+   
 
-
-    @Override
-    public void setPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPosition'");
-    }
-
-
-    @Override
-    public void receiveComposant(Metal metal) {
-        this.metals.add(metal);
-    }
-
-
-    @Override
-    public void sendProduct() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sendProduct'");
-    }
-
-
-    @Override
-    public void startProduction() {
-        this.levelProduction ++;
-    }
-
-
-    @Override
-    public void stopProduction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'stopProduction'");
-    }
-
-    }
+}
 
 
