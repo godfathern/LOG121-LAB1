@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import Modele.usine.Usine;
+import Modele.usine.UsineAile;
 import simulation.matiere.Metal;
-import simulation.usine.Usine;
-import simulation.usine.UsineAile;
 
 public class PanneauPrincipal extends JPanel {
 
@@ -70,7 +70,7 @@ public class PanneauPrincipal extends JPanel {
 				g.drawLine(335, 367, 559 ,591);
 		
 				//Display usines 
-				Usine usine11 = this.document.getUsineByIdAndIconType("11", "vide");
+				//Usine usine11 = this.document.getUsineByIdAndIconType("11", "vide");
 				//System.out.println("usine11" + this.usine11);
 				//this.i11.paintIcon(this,g,this.usine11.getX(),this.usine11.getY());
 

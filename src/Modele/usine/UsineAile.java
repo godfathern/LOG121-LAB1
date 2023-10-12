@@ -1,4 +1,4 @@
-package simulation.usine;
+package Modele.usine;
 
 import java.util.List;
 

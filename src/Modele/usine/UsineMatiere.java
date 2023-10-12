@@ -1,4 +1,4 @@
-package simulation.usine;
+package Modele.usine;
 
 public class UsineMatiere extends Usine {
 
