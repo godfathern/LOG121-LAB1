@@ -1,4 +1,4 @@
-package simulation;
+package view;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import Modele.usine.*;
+import modele.usine.*;
 
 import org.w3c.dom.Node;
 import java.awt.Point;

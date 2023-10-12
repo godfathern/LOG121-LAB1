@@ -1,6 +1,6 @@
-package Modele.usine;
+package modele.usine;
 
-import simulation.matiere.Metal;
+import view.matiere.Metal;
 
 public class Usine {
     private String type;

@@ -1,4 +1,4 @@
-package simulation;
+package view;
 
 public class UsineMatiere {
 //comment

@@ -1,13 +1,13 @@
-package Modele.usine;
+package modele.usine;
 
 import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import view.matiere.Metal;
+
 import java.awt.Point;
 import java.util.ArrayList;
-
-import simulation.matiere.Metal;
 
 public class UsineAile extends Usine {
    

@@ -1,4 +1,4 @@
-package simulation;
+package view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -11,43 +11,45 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
-public class PanneauStrategie extends JPanel {
+import strategyPattern.StrategyVente;
+
+public class PanneauStrategie extends JPanel implements StrategyVente {
 
 	private static final long serialVersionUID = 1L;
 
 	public PanneauStrategie() {
 
 		ButtonGroup groupeBoutons = new ButtonGroup();
-		JRadioButton strategie1 = new JRadioButton("Stratégie 1");
-		JRadioButton strategie2 = new JRadioButton("Stratégie 2");	
+		JRadioButton strategie1 = new JRadioButton("Stratï¿½gie 1");
+		JRadioButton strategie2 = new JRadioButton("Stratï¿½gie 2");	
 		
 		JButton boutonConfirmer = new JButton("Confirmer");
 
 		boutonConfirmer.addActionListener((ActionEvent e) -> {
-			// TODO - Appeler la bonne stratégie
-			System.out.println(getSelectedButtonText(groupeBoutons));
-			// Fermer la fenêtre du composant
+			// TODO - Appeler la bonne stratï¿½gie
+			System.out.println(this.getSelectedButtonText(groupeBoutons));
+			// Fermer la fenï¿½tre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
 
 		JButton boutonAnnuler = new JButton("Annuler");
 
 		boutonAnnuler.addActionListener((ActionEvent e) -> {
-			// Fermer la fenêtre du composant
+			// Fermer la fenï¿½tre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
 
 		groupeBoutons.add(strategie1);
 		groupeBoutons.add(strategie2);		
-		add(strategie1);
-		add(strategie2);		
-		add(boutonConfirmer);
-		add(boutonAnnuler);
+		this.add(strategie1);
+		this.add(strategie2);		
+		this.add(boutonConfirmer);
+		this.add(boutonAnnuler);
 
 	}
 
 	/**
-	 * Retourne le bouton sélectionné dans un groupe de boutons.
+	 * Retourne le bouton sï¿½lectionnï¿½ dans un groupe de boutons.
 	 * @param groupeBoutons
 	 * @return
 	 */
@@ -60,6 +62,12 @@ public class PanneauStrategie extends JPanel {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'execute'");
 	}
 
 }

@@ -1,4 +1,4 @@
-package simulation;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,24 +16,24 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	public FenetrePrincipale() {
 		PanneauPrincipal panneauPrincipal = new PanneauPrincipal();
 		MenuFenetre menuFenetre = new MenuFenetre();
-		add(panneauPrincipal);
-		add(menuFenetre, BorderLayout.NORTH);
-		// Faire en sorte que le X de la fenêtre ferme la fenêtre
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle(TITRE_FENETRE);
-		setSize(DIMENSION);
-		// Rendre la fenêtre visible
-		setVisible(true);
-		// Mettre la fenêtre au centre de l'écran
-		setLocationRelativeTo(null);
-		// Empêcher la redimension de la fenêtre
-		setResizable(false);
+		this.add(panneauPrincipal);
+		this.add(menuFenetre, BorderLayout.NORTH);
+		// Faire en sorte que le X de la fenï¿½tre ferme la fenï¿½tre
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle(TITRE_FENETRE);
+		this.setSize(DIMENSION);
+		// Rendre la fenï¿½tre visible
+		this.setVisible(true);
+		// Mettre la fenï¿½tre au centre de l'ï¿½cran
+		this.setLocationRelativeTo(null);
+		// Empï¿½cher la redimension de la fenï¿½tre
+		this.setResizable(false);
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getPropertyName().equals("TEST")) {
-			repaint();
+			this.repaint();
 			System.out.println(evt.getNewValue());
 		}
 	}

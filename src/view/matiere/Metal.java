@@ -1,4 +1,4 @@
-package simulation.matiere;
+package view.matiere;
 
 import java.awt.Point;
 

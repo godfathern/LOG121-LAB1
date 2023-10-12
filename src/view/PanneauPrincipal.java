@@ -1,4 +1,4 @@
-package simulation;
+package view;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import Modele.usine.Usine;
-import Modele.usine.UsineAile;
-import simulation.matiere.Metal;
+import modele.usine.Usine;
+import modele.usine.UsineAile;
+import view.matiere.Metal;
 
 public class PanneauPrincipal extends JPanel {
 
@@ -42,23 +42,14 @@ public class PanneauPrincipal extends JPanel {
 	ImageIcon ump0 = new ImageIcon(this.getClass().getResource("/ressources/UMP0%.png"));//bleu
 	ImageIcon ut0 = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));//violet
 
-
-
-
-
-
-	//Usine Aile :
-	
-
-
 	//Metal
-	Metal metal = new Metal (new Point (32,32));
+	Metal metal = new Metal (new Point (100,32));
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		// On ajoute � la position le delta x et y de la vitesse
-		this.position.translate(this.vitesse.x, this.vitesse.y);
+		//this.position.translate(this.vitesse.x, this.vitesse.y);
 		g.fillRect(this.position.x, this.position.y, this.taille, this.taille);
 
 				//Display lines
@@ -69,17 +60,20 @@ public class PanneauPrincipal extends JPanel {
 				g.drawLine(111, 367, 335 ,367);
 				g.drawLine(335, 367, 559 ,591);
 		
-				//Display usines 
+				
 				//Usine usine11 = this.document.getUsineByIdAndIconType("11", "vide");
 				//System.out.println("usine11" + this.usine11);
 				//this.i11.paintIcon(this,g,this.usine11.getX(),this.usine11.getY());
-
-				// this.e0.paintIcon(this, g, 640, 192);
-				// this.ump0.paintIcon(this, g, 32, 32);
-				// this.ump0.paintIcon(this, g, 96, 352);
-				// this.ump0.paintIcon(this, g, 544, 576);
-				// this.ua0.paintIcon(this, g, 160, 192);
-				// this.um0.paintIcon(this, g, 320, 352);
+				
+				//Display usines 
+				
+				this.ut0.paintIcon(this, g, this.document.getCoordinatesForUsineID("21").x, this.document.getCoordinatesForUsineID("21").y);
+				this.e0.paintIcon(this, g, 640, 192);
+				this.ump0.paintIcon(this, g, 32, 32);
+				this.ump0.paintIcon(this, g, 96, 352);
+				this.ump0.paintIcon(this, g, 544, 576);
+				this.ua0.paintIcon(this, g, 160, 192);
+				this.um0.paintIcon(this, g, 320, 352);
 
 
 			
@@ -92,7 +86,7 @@ public class PanneauPrincipal extends JPanel {
 			}
 			else 
 				{
-					this.metal.setPosition(new Point (32,32));
+					this.metal.setPosition(new Point (47,47));
 				}
 			
 	}

@@ -1,4 +1,4 @@
-package Modele.usine;
+package modele.usine;
  public class Icone {
         private String type;
         private String path;

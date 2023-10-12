@@ -1,4 +1,4 @@
-package Modele.usine;
+package modele.usine;
 
 public class UsineMatiere extends Usine {
 

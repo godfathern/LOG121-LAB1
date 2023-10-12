@@ -1,4 +1,4 @@
-package Modele.usine.strategy;
+package strategyPattern;
 
 public interface StrategyVente {
     public void execute();

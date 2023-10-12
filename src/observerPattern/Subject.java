@@ -1,4 +1,4 @@
-package simulation.observateurPatron;
+package observerPattern;
 
 import java.awt.*;
 import java.util.List;

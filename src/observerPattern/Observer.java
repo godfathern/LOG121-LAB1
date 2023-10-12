@@ -1,4 +1,4 @@
-package simulation.observateurPatron;
+package observerPattern;
 
 public interface Observer {
     void update();

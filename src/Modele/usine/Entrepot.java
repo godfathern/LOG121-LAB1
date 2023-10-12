@@ -1,7 +1,14 @@
-package Modele.usine;
+package modele.usine;
 
-import simulation.observateurPatron.Subject;
+import observerPattern.Subject;
+import strategyPattern.StrategyVente;
 
-public class Entrepot extends Subject {
+public class Entrepot extends Subject implements StrategyVente {
+
+    @Override
+    public void execute() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+    }
     
 }
