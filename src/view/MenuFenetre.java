@@ -48,6 +48,7 @@ public class MenuFenetre extends JMenuBar {
 
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				// TODO - Parser le fichier XML s�lectionn�
+				PanneauPrincipal.xml = true;
 				File selectedFile = fileChooser.getSelectedFile();
 				System.out.println(selectedFile.getAbsolutePath());
 			}

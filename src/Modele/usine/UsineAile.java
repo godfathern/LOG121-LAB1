@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import composants.Metal;
 import observerPattern.Observer;
-import view.matiere.Metal;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -22,28 +22,31 @@ public class UsineAile extends Usine implements Observer {
 
   public UsineAile(String type, String id, String x2, String y2) {
         super(type, id, x2, y2);
+        this.levelProduction =0;
+        this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
         //TODO Auto-generated constructor stub
     }
 
     public void updateImage(){
          if (this.levelProduction == 0){
             this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));//violet;
-        }else {
-        this.levelProduction ++;
+            
+        } 
         if (this.levelProduction == 1){
             this.image = new ImageIcon(this.getClass().getResource("/ressources/UT33%.png"));//violet;
+            
         }
-
         if (this.levelProduction == 2){
             this.image = new ImageIcon(this.getClass().getResource("/ressources/UT66%.png"));//violet;
+           
         }
-        
         if (this.levelProduction == 3){
-            this.levelProduction = 0;
             this.image = new ImageIcon(this.getClass().getResource("/ressources/UT100%.png"));//violet;
+            this.levelProduction = -1;
         }
+        this.levelProduction ++;
         }
-    }
+    
 
 
 

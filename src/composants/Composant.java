@@ -1,17 +1,17 @@
-package view.matiere;
+package composants;
 
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
-public class Metal {
+public class Composant {
     private Point position;
     private Point vitesse = new Point (1,1);
-    ImageIcon metal;
+    ImageIcon composant;
 
-    public Metal (Point position){
+    public Composant (Point position, String path){
         this.position = position;
-        this.metal = new ImageIcon(this.getClass().getResource("/ressources/metal.png"));
+        this.composant = new ImageIcon(this.getClass().getResource(path));
     }
 
     public void setPosition(Point position) {
@@ -23,8 +23,8 @@ public class Metal {
         return this.position;
     }
 
-    public ImageIcon getMetal(){
-        return this.metal;
+    public ImageIcon getComposant(){
+        return this.composant;
     }
 
 

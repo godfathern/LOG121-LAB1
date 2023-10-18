@@ -4,6 +4,8 @@ import observerPattern.Subject;
 import strategyPattern.StrategyVente;
 
 public class Entrepot extends Subject implements StrategyVente {
+    private static Entrepot instance;
+    `
 
     @Override
     public void execute() {
