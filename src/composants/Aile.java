@@ -1,15 +1,15 @@
-package composants;
+// package composants;
 
-import java.awt.Point;
+// import java.awt.Point;
 
-import javax.swing.ImageIcon;
+// import javax.swing.ImageIcon;
 
-public class Aile extends Composant {
+// public class Aile extends Composant {
 
-    public Aile(Point position, String path) {
-        super(position, path);
+//     public Aile(Point position, String path) {
+//         super(position, path);
         
-    }
+//     }
 
 
 
@@ -18,4 +18,4 @@ public class Aile extends Composant {
 
 
 
-}
+// }

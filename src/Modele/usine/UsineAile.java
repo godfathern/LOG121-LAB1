@@ -11,60 +11,59 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class UsineAile extends Usine implements Observer {
-   
-    private List <Metal> metals = new ArrayList <>();
+
+    private List<Metal> metals = new ArrayList<>();
     private ImageIcon image;
     private int nombreMetal;
     private int nombreAile;
     private Point position;
-    private int levelProduction; //% temps nécessaire à la production a été écoulé
-    
+    private Point positionAile;
+    private int levelProduction; // % temps nécessaire à la production a été écoulé
 
-  public UsineAile(String type, String id, String x2, String y2) {
+    public UsineAile(String type, String id, String x2, String y2) {
         super(type, id, x2, y2);
-        this.levelProduction =0;
+        this.levelProduction = 0;
         this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
-        //TODO Auto-generated constructor stub
+        this.nombreMetal = 0;
+        this.position = new Point(320, 32);
     }
 
-    public void updateImage(){
-         if (this.levelProduction == 0){
-            this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));//violet;
+    public void updateImage() {
+        if (this.nombreMetal == 2) {
+            switch (this.levelProduction) {
+                case 0:
+                    this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
+                    break;
+                case 1:
+                    this.image = new ImageIcon(this.getClass().getResource("/ressources/UT33%.png"));
+                    break;
+                case 2:
+                    this.image = new ImageIcon(this.getClass().getResource("/ressources/UT66%.png"));
+                    break;
+                case 3:
+                    this.image = new ImageIcon(this.getClass().getResource("/ressources/UT100%.png"));
+                    this.levelProduction = -1;
+            }
             
-        } 
-        if (this.levelProduction == 1){
-            this.image = new ImageIcon(this.getClass().getResource("/ressources/UT33%.png"));//violet;
-            
-        }
-        if (this.levelProduction == 2){
-            this.image = new ImageIcon(this.getClass().getResource("/ressources/UT66%.png"));//violet;
-           
-        }
-        if (this.levelProduction == 3){
-            this.image = new ImageIcon(this.getClass().getResource("/ressources/UT100%.png"));//violet;
-            this.levelProduction = -1;
-        }
-        this.levelProduction ++;
-        }
-    
 
+        }
+        this.levelProduction++;
 
+    }
 
-    public ImageIcon getImage(){
+    public ImageIcon getImage() {
         return this.image;
     }
 
-
-    public void produceAile(){
-        if (this.nombreMetal == 2){
-            this.nombreAile ++;
+    public void produceAile() {
+        if (this.nombreMetal == 2) {
+            this.positionAile = this.position;
+            this.nombreMetal = 0;
         }
     }
 
+    public boolean comparePosition() {
 
-    public boolean comparePosition(){
-
-        
         return false;
     }
 
@@ -114,11 +113,8 @@ public class UsineAile extends Usine implements Observer {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        this.nombreMetal++;
+        System.out.println("Number of metal : " + this.nombreMetal);
     }
-   
 
 }
-
-

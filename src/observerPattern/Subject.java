@@ -10,7 +10,7 @@ public class Subject {
      */
     private List <Observer> observers = new ArrayList<>();
 
-    public void addObersver (Observer observer){
+    public void addObserver (Observer observer){
         this.observers.add (observer);
     }
 
@@ -18,6 +18,13 @@ public class Subject {
         this.observers.remove (observer);
     }
     
+        public void notifyObservers (){
+            for (Observer observer : this.observers){
+                observer.update();
+            }
+        }
+
+
 
 
 

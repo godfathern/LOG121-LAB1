@@ -1,5 +1,7 @@
 package modele.usine;
 
+import java.awt.Point;
+
 import composants.Metal;
 
 public class Usine {
@@ -9,12 +11,20 @@ public class Usine {
     private String id;
     private String x;
     private String y;
+    private Point position;
 
+    /**
+     * @param type
+     * @param id
+     * @param x2
+     * @param y2
+     */
     public Usine(String type, String id, String x2, String y2) {
         this.type = type;
         this.id = id;
         this.x = x2;
         this.y = y2;
+        
     }
 
     public Usine(String type, Icone icone) {
@@ -49,11 +59,8 @@ public class Usine {
     }
 
 
+    public Point getPosition(){
+        return this.position;
+    }
     
-    
-    /*public void setPosition();
-    public void receiveComposant(Metal metal);
-    public void sendProduct();
-    public void startProduction();
-    public void stopProduction();*/
 }
