@@ -15,7 +15,7 @@ public class Environnement extends SwingWorker<Object, String> {
 			 */
 
 			 
-			this.firePropertyChange("TEST", null, "Ceci est un test");
+			this.firePropertyChange("START", null, "Ceci est un test");
 		}
 		return null;
 	}

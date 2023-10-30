@@ -77,7 +77,9 @@ public class PanneauPrincipal extends JPanel {
 			this.usineMatiere1.updateImage();
 			this.usineAile.getImage().paintIcon(this, g, 320, 32);
 			this.usineAile.updateImage();
+			this.usineAile.produceAile();
 
+			
 			this.e0.paintIcon(this, g, 640, 192);
 			//this.ump0.paintIcon(this, g, 32, 32);
 			this.ump0.paintIcon(this, g, 96, 352);

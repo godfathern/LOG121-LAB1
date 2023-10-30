@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import composants.Metal;
 import observerPattern.Observer;
+import view.Environnement;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class UsineAile extends Usine implements Observer {
     }
 
     public void updateImage() {
-        if (this.nombreMetal == 2) {
+        System.out.println("Level production: " + this.levelProduction);
+        if (this.nombreMetal >= 2) {
             switch (this.levelProduction) {
                 case 0:
                     this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
@@ -43,11 +45,10 @@ public class UsineAile extends Usine implements Observer {
                 case 3:
                     this.image = new ImageIcon(this.getClass().getResource("/ressources/UT100%.png"));
                     this.levelProduction = -1;
+                    break;
             }
-            
-
+            this.levelProduction++;
         }
-        this.levelProduction++;
 
     }
 
