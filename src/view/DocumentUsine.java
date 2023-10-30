@@ -10,7 +10,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import modele.usine.*;
+import modele.usine.Icone;
+import modele.usine.Usine;
 
 import org.w3c.dom.Node;
 import java.awt.Point;

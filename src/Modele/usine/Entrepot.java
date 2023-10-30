@@ -14,9 +14,6 @@ public class Entrepot extends Subject implements StrategyVente {
         return instance;
     }
 
-
-
-
     @Override
     public void execute() {
         // TODO Auto-generated method stub

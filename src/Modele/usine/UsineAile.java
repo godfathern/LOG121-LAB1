@@ -19,6 +19,8 @@ public class UsineAile extends Usine implements Observer {
     private int nombreAile;
     private Point position;
     private Point positionAile;
+  
+
     private int levelProduction; // % temps nécessaire à la production a été écoulé
 
     public UsineAile(String type, String id, String x2, String y2) {
@@ -61,6 +63,10 @@ public class UsineAile extends Usine implements Observer {
             this.positionAile = this.position;
             this.nombreMetal = 0;
         }
+    }
+
+      public Point getPositionAile() {
+        return positionAile;
     }
 
     public boolean comparePosition() {

@@ -2,7 +2,6 @@ package modele.usine;
 
 import java.awt.Point;
 
-import composants.Metal;
 
 public class Usine {
     private String type;
