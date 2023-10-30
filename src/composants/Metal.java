@@ -11,12 +11,12 @@ import observerPattern.Subject;
 public class Metal extends Subject implements Composant {
     private Point position;
     private Point vitesse = new Point (1,1);
-    ImageIcon composant;
+    ImageIcon image;
 
 
-    public Metal(Point position, String path) {
+    public Metal(Point position) {
     this.position = position;
-    this.composant = new ImageIcon(this.getClass().getResource(path));
+    this.image = new ImageIcon(this.getClass().getResource("/ressources/metal.png"));
     }
 
 
@@ -33,8 +33,8 @@ public class Metal extends Subject implements Composant {
 
 
     @Override
-    public ImageIcon getComposant() {
-        return this.composant;
+    public ImageIcon getImage() {
+        return this.image;
     }
     
     
