@@ -9,7 +9,7 @@ import observerPattern.Observer;
 public class UsineMatiere3 implements Observer {
     private static UsineMatiere3 instance;
     public static int usineMatiere3Compteur = 0;
-    public static final int usineMatiere2Interval = 200;
+    public static final int usineMatiere2Interval = 100;
     
     
     int levelProduction;

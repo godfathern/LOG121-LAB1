@@ -5,12 +5,13 @@ import java.awt.Point;
 import javax.swing.SwingWorker;
 
 import composants.Metal;
+import modele.usine.UsineMatiere1;
 import modele.usine.UsineMatiere2;
 import modele.usine.UsineMatiere3;
 
 public class Environnement extends SwingWorker<Object, String> {
 	private boolean actif = true;
-	private static final int DELAI = 30; //initial : 100
+	private static final int DELAI = 100; //initial : 100
 	
 	@Override
 	protected Object doInBackground() throws Exception {
@@ -19,9 +20,12 @@ public class Environnement extends SwingWorker<Object, String> {
 			/**
 			 * C'est ici que vous aurez � faire la gestion de la notion de tour.
 			 */
-			
+
+
+
+
 			UsineMatiere2.getInstance().usineMatiere2Compteur +=50;
-			UsineMatiere3.getInstance().usineMatiere3Compteur +=50;
+			UsineMatiere3.getInstance().usineMatiere3Compteur +=1;
 
 			if (UsineMatiere2.getInstance().usineMatiere2Compteur >= 
 			UsineMatiere2.getInstance().usineMatiere2Interval){
@@ -33,6 +37,7 @@ public class Environnement extends SwingWorker<Object, String> {
 			UsineMatiere3.getInstance().usineMatiere2Interval){
 				UsineMatiere3.getInstance().updateImage();
 				UsineMatiere3.getInstance().usineMatiere3Compteur = 0;
+				UsineMatiere1.produiceMetal();
 			}
 
 

@@ -26,10 +26,6 @@ public class Usine {
         
     }
 
-    public Usine(String type, Icone icone) {
-        this.type = type;
-        this.icone = icone;
-    }
 
 
     public String getPath() {
@@ -39,27 +35,8 @@ public class Usine {
         this.path = path;
     }
 
-    public String getX() {
-        return this.x;
-    }
-
-    public void setX(String x) {
-        this.x = x;
-    }
-
-    
-
-    public String getY() {
-        return this.y;
-    }
-
-    public void setY(String y) {
-        this.y = y;
-    }
 
 
-    public Point getPosition(){
-        return this.position;
-    }
+
     
 }

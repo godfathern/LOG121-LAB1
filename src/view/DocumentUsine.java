@@ -213,8 +213,6 @@ public class DocumentUsine {
 
             Icone icone = new Icone(iconeType, iconePath);
             System.out.println(type + "-"  + iconeType + "-" + iconePath);
-            Usine usine = new Usine(type, icone);
-            this.usines.put(type, usine);
         }
     }
         

@@ -18,7 +18,8 @@ import composants.Metal;
 //import composants.Moteur;
 
 import modele.usine.UsineAile;
-import modele.usine.UsineMatiere;
+import modele.usine.UsineMatiere1;
+import modele.usine.UsineMatiere1;
 import modele.usine.UsineMatiere2;
 import modele.usine.UsineMatiere3;
 
@@ -40,7 +41,7 @@ public class PanneauPrincipal extends JPanel {
 	// ImageIcon i11 = new ImageIcon(this.usine11.getPath());
 	// Usine aile :
 	UsineAile usineAile = new UsineAile("wuwu", "wuwu", "32", "32");
-	UsineMatiere usineMatiere1 = new UsineMatiere("1", "1", "32", "32");
+	UsineMatiere1 usineMatiere1 = UsineMatiere1.getInstance();
 
 	// Importer images de la demonstration :
 	ImageIcon e0 = new ImageIcon(this.getClass().getResource("/ressources/E0%.png"));// orange
@@ -49,20 +50,13 @@ public class PanneauPrincipal extends JPanel {
 	ImageIcon ump0 = new ImageIcon(this.getClass().getResource("/ressources/UMP0%.png"));// bleu
 	ImageIcon ut0 = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));// violet
 
-	ArrayList<Aile> ailes = new ArrayList<>();
-	Iterator<Aile> iterator = this.ailes.iterator();
-
 	// Metal
-	Metal metal = new Metal(new Point(100, 32));
 	// Composant avion = new Avion(new Point(300, 192), "/ressources/avion.png");
 	// Composant aile = new Aile(new Point(258, 90), "/ressources/aile.png");
 	// Composant moteur = new Moteur(new Point(268, 300), "/ressources/moteur.png");
 
 	public PanneauPrincipal() {
-		this.metal.addObserver(this.usineAile);
-		this.ailes.add(new Aile (new Point (100,200)));
-		this.ailes.add(new Aile (new Point (200,200)));
-		
+
 	}
 
 	@Override
@@ -96,8 +90,6 @@ public class PanneauPrincipal extends JPanel {
 			this.ua0.paintIcon(this, g, 160, 192);
 			this.um0.paintIcon(this, g, 320, 352);
 
-			// Display composants
-			this.metal.getImage().paintIcon(this, g, this.metal.getPosition().x, this.metal.getPosition().y);
 			// this.avion.getComposant().paintIcon(this, g, this.avion.getPosition().x,
 			// this.avion.getPosition().y);
 			// this.aile.getComposant().paintIcon(this, g, this.aile.getPosition().x,
@@ -105,39 +97,33 @@ public class PanneauPrincipal extends JPanel {
 			// this.moteur.getComposant().paintIcon(this, g, this.moteur.getPosition().x,
 			// this.moteur.getPosition().y);
 
-			// Move metal
-			if (this.metal.getPosition().x < 320) {
-				this.metal.getPosition().translate(1, 0);
-			} else {
-				this.metal.setPosition(new Point(32, 32));
+			// Display and move metals :
+			for (int i = 0; i < (this.usineMatiere1.getMetals().size()); i++) {
+
+				Metal metal = this.usineMatiere1.getMetals().get(i);
+				System.out.println(metal);
+				
+				metal.addObserver(this.usineAile);
+				metal.getImage().paintIcon(this, g, metal.getPosition().x, metal.getPosition().y);
+				if (metal.getPosition().x < 320) {
+					metal.getPosition().translate(1, 0);
+					metal.checkPosition(this.usineAile);
+					System.out.println("pos met : " + metal.getPosition());
+					System.out.println("Pos Aile : " + this.usineAile.getPosition());
+				} else {
+					metal.setPosition(new Point(500, 500));
+				}
+				
+				
 			}
-			this.metal.checkPosition(this.usineAile);
 			this.usineAile.produceAile();
-			//this.usineAile.updateImage();
-			// if (this.usineAile.getAiles().size() >= 1) {
-			// 	for (int i = 0; i <= this.usineAile.getAiles().size(); i++) {
-			// 		if (this.usineAile.getAiles().get(i) != null) {
-			// 			this.usineAile.getAiles().get(i).getImage().paintIcon(this, g,
-			// 					this.usineAile.getAiles().get(i).getPosition().x,
-			// 					this.usineAile.getAiles().get(i).getPosition().y);
-			// 			this.usineAile.getAiles().get(i).getPosition().translate(-1, 1);
-			// 		}
-			// 	}
-			// }
+			for (int i = 0; i < (this.usineAile.getAiles().size()); i++) {
+				Aile aile = this.usineAile.getAiles().get(i);
+				aile.getImage().paintIcon(this, g, aile.getPosition().x,
+						aile.getPosition().y);
+				aile.getPosition().translate(-1, 1);
 
-
-
-			
-			for (int i = 0; i <=(this.usineAile.getAiles().size()-1); i++){
-			Aile aile = this.usineAile.getAiles().get(i);
-			aile.getImage().paintIcon(this, g, aile.getPosition().x,
-			aile.getPosition().y);
-			aile.getPosition().translate(-1, 1);
 			}
-			
-			
-
-
 
 		}
 

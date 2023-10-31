@@ -3,6 +3,7 @@ package modele.usine;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.text.Position;
 
 import composants.Aile;
 import composants.Metal;
@@ -62,13 +63,13 @@ public class UsineAile extends Usine implements Observer {
 
     public void produceAile() {
         if (this.nombreMetal == 2) {
-            this.ailes.add(new Aile(this.position));
+            this.ailes.add(new Aile(new Point(320,32)));
             System.out.println("Amount of Ailes : " + this.ailes.size());
             System.out.println("Amount of Ailes : " + this.ailes.size());
             System.out.println("Amount of Ailes : " + this.ailes.size());
             System.out.println("Amount of Ailes : " + this.ailes.size());
             System.out.println("Amount of Ailes : " + this.ailes.size());
-            this.nombreMetal = 0;
+            this.setNombreMetal(0);
         }
     }
 
