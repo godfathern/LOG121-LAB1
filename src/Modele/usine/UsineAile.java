@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import composants.Aile;
 import composants.Metal;
 import observerPattern.Observer;
 import view.Environnement;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class UsineAile extends Usine implements Observer {
 
     private List<Metal> metals = new ArrayList<>();
+    public ArrayList<Aile> ailes = new ArrayList<>();
     private ImageIcon image;
     private int nombreMetal;
     private int nombreAile;
@@ -32,7 +34,7 @@ public class UsineAile extends Usine implements Observer {
     }
 
     public void updateImage() {
-        System.out.println("Level production: " + this.levelProduction);
+        //System.out.println("Level production: " + this.levelProduction);
         if (this.nombreMetal >= 2) {
             switch (this.levelProduction) {
                 case 0:
@@ -60,13 +62,26 @@ public class UsineAile extends Usine implements Observer {
 
     public void produceAile() {
         if (this.nombreMetal == 2) {
-            this.positionAile = this.position;
+            this.ailes.add(new Aile(this.position));
+            System.out.println("Amount of Ailes : " + this.ailes.size());
+            System.out.println("Amount of Ailes : " + this.ailes.size());
+            System.out.println("Amount of Ailes : " + this.ailes.size());
+            System.out.println("Amount of Ailes : " + this.ailes.size());
+            System.out.println("Amount of Ailes : " + this.ailes.size());
             this.nombreMetal = 0;
         }
     }
 
+    public ArrayList <Aile> getAiles(){
+        return this.ailes;
+    }
+
       public Point getPositionAile() {
-        return positionAile;
+        return this.positionAile;
+    }
+
+    public void clearAile(){
+        this.positionAile = null;
     }
 
     public boolean comparePosition() {
@@ -122,6 +137,10 @@ public class UsineAile extends Usine implements Observer {
     public void update() {
         this.nombreMetal++;
         System.out.println("Number of metal : " + this.nombreMetal);
+        System.out.println("Number of metal : " + this.nombreMetal);
+        System.out.println("Number of metal : " + this.nombreMetal);
+        System.out.println("Number of metal : " + this.nombreMetal);
     }
+
 
 }
