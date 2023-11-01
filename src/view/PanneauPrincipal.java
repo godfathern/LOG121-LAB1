@@ -78,7 +78,6 @@ public class PanneauPrincipal extends JPanel {
 			this.usineMatiere1.updateImage();
 			this.usineAile.getImage().paintIcon(this, g, 320, 32);
 			this.usineAile.updateImage();
-			this.usineAile.produceAile();
 
 			UsineMatiere2.getInstance().getImage().paintIcon(this, g, 96, 352);
 			UsineMatiere3.getInstance().getImage().paintIcon(this, g, 544, 576);
@@ -106,7 +105,7 @@ public class PanneauPrincipal extends JPanel {
 				metal.addObserver(this.usineAile);
 				metal.getImage().paintIcon(this, g, metal.getPosition().x, metal.getPosition().y);
 				if (metal.getPosition().x < 320) {
-					metal.getPosition().translate(1, 0);
+					metal.getPosition().translate(4, 0);
 					metal.checkPosition(this.usineAile);
 					System.out.println("pos met : " + metal.getPosition());
 					System.out.println("Pos Aile : " + this.usineAile.getPosition());
@@ -120,7 +119,7 @@ public class PanneauPrincipal extends JPanel {
 			for (int i = 0; i < (this.usineAile.getAiles().size()); i++) {
 				Aile aile = this.usineAile.getAiles().get(i);
 				aile.getImage().paintIcon(this, g, aile.getPosition().x,
-						aile.getPosition().y);
+				aile.getPosition().y);
 				aile.getPosition().translate(-1, 1);
 
 			}
