@@ -1,12 +1,52 @@
-// package composants;
+package composants;
 
-// import java.awt.Point;
+import java.awt.Point;
 
-// public class Moteur extends Composant {
+import javax.swing.ImageIcon;
 
-//     public Moteur(Point position, String path) {
-//         super(position, path);
-//         //TODO Auto-generated constructor stub
-//     }
+import modele.usine.Usine;
+import modele.usine.UsineAile;
+import modele.usine.UsineAile1;
+import modele.usine.UsineAssemblage;
+import modele.usine.UsineMoteur;
+import observerPattern.Observer;
+import observerPattern.Subject;
+
+public class Moteur extends Subject implements Composant {
+    private Point position;
+    private Point vitesse = new Point (1,1);
+    ImageIcon image;
+
+
+    public Moteur(Point position) {
+    this.position = position;
+    this.image = new ImageIcon(this.getClass().getResource("/ressources/moteur.png"));
+    }
+
+
+    @Override
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+
+    @Override
+    public Point getPosition() {
+       return this.position;
+    }
+
+
+    @Override
+    public ImageIcon getImage() {
+        return this.image;
+    }
     
-// }
+    
+    public void checkPosition(UsineAssemblage usine){
+       if (this.getPosition().x == usine.getPosition().x && this.getPosition().y == usine.getPosition().y){
+        UsineAssemblage.getInstance().updateMoteur();
+       }
+    }
+
+
+}

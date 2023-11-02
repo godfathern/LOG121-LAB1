@@ -1,5 +1,7 @@
 package view;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Simulation {
 
 	/**
@@ -10,6 +12,7 @@ public class Simulation {
 		FenetrePrincipale fenetre = new FenetrePrincipale();
 		environnement.addPropertyChangeListener(fenetre);
 		environnement.execute();
+
 	}
 
 }

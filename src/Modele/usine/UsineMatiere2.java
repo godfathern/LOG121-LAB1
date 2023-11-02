@@ -1,15 +1,19 @@
 package modele.usine;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import composants.Metal;
 import observerPattern.Observer;
 
 public class UsineMatiere2 implements Observer {
+    private static boolean startProduction;
     private static UsineMatiere2 instance;
-    public static int usineMatiere2Compteur = 0;
-    public static final int usineMatiere2Interval = 50;
+    public static int usineMatiereCompteur = 0;
+    public static final int usineMatiereInterval = 500;
+    private ArrayList<Metal> metals = new ArrayList<>();
     
     
     int levelProduction;
@@ -35,7 +39,21 @@ public class UsineMatiere2 implements Observer {
         this.images.add(this.Plein);
         this.image = this.Vide;
         this.levelProduction = 0;
+        this.startProduction = true;
     }
+
+    public static void produiceMetal(){
+        if (startProduction == true){
+            instance.metals.add (new Metal (new Point(96,352)));
+        }
+        
+
+    }
+
+    public ArrayList<Metal> getMetals(){
+        return this.metals;
+    }
+
 
     public ImageIcon getImage(){
         return this.image;
@@ -43,19 +61,15 @@ public class UsineMatiere2 implements Observer {
 
 
 
-    public void updateImage() {
-        this.image = this.images.get(this.levelProduction);
-        this.levelProduction++;
-        if (this.levelProduction > 3){
-            this.levelProduction = 0;
+    public void updateImage(int level) {
+        if (startProduction == true){
+            this.image = this.images.get(level);
         }
-        
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+       //this.startProduction = false;
     }
 
 }

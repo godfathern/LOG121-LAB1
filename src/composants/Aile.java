@@ -4,6 +4,9 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
+import modele.usine.UsineAile1;
+import modele.usine.UsineAssemblage;
+import modele.usine.UsineMoteur;
 import observerPattern.Subject;
 
 public class Aile extends Subject implements Composant {
@@ -31,7 +34,11 @@ public class Aile extends Subject implements Composant {
     }
 
 
-
+    public void checkPosition(UsineAssemblage usine){
+       if (this.getPosition().x == usine.getPosition().x && this.getPosition().y == usine.getPosition().y){
+        UsineAssemblage.getInstance().update();
+       }
+    }
 
 
 

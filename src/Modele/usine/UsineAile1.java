@@ -13,7 +13,7 @@ import view.Environnement;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class UsineAile extends Usine implements Observer {
+public class UsineAile1 {
 
     private List<Metal> metals = new ArrayList<>();
     public ArrayList<Aile> ailes = new ArrayList<>();
@@ -21,22 +21,25 @@ public class UsineAile extends Usine implements Observer {
     private int nombreMetal;
     private int nombreAile;
     private Point position;
-    private Point positionAile;
-  
+    private static UsineAile1 instance = new UsineAile1();
+    public static final int usineAileInterval = 250;
+    public static int usineAileCompteur;
 
     private int levelProduction; // % temps nécessaire à la production a été écoulé
 
-    public UsineAile(String type, String id, String x2, String y2) {
+    private UsineAile1() {
         this.levelProduction = 0;
         this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
         this.nombreMetal = 0;
         this.position = new Point(320, 32);
     }
 
-    public void updateImage() {
-        //System.out.println("Level production: " + this.levelProduction);
-        if (this.nombreMetal >= 2) {
-            switch (this.levelProduction) {
+    public static  UsineAile1 getInstance() {
+        return instance; // Return the one and only instance
+    }
+
+    public void updateImage(int level) {
+            switch (level) {
                 case 0:
                     this.image = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));
                     break;
@@ -48,27 +51,20 @@ public class UsineAile extends Usine implements Observer {
                     break;
                 case 3:
                     this.image = new ImageIcon(this.getClass().getResource("/ressources/UT100%.png"));
-                    this.levelProduction = -1;
                     break;
             }
-            this.levelProduction++;
         }
 
-    }
+    
 
     public ImageIcon getImage() {
         return this.image;
     }
 
     public void produceAile() {
-        if (this.nombreMetal == 2) {
+        if (this.nombreMetal >= 2) {
             this.ailes.add(new Aile(new Point(320,32)));
-            System.out.println("Amount of Ailes : " + this.ailes.size());
-            System.out.println("Amount of Ailes : " + this.ailes.size());
-            System.out.println("Amount of Ailes : " + this.ailes.size());
-            System.out.println("Amount of Ailes : " + this.ailes.size());
-            System.out.println("Amount of Ailes : " + this.ailes.size());
-            this.setNombreMetal(0);
+            this.setNombreMetal(this.nombreMetal-2);
         }
     }
 
@@ -76,13 +72,6 @@ public class UsineAile extends Usine implements Observer {
         return this.ailes;
     }
 
-      public Point getPositionAile() {
-        return this.positionAile;
-    }
-
-    public void clearAile(){
-        this.positionAile = null;
-    }
 
     public boolean comparePosition() {
 
@@ -133,13 +122,8 @@ public class UsineAile extends Usine implements Observer {
         this.levelProduction = levelProduction;
     }
 
-    @Override
     public void update() {
         this.nombreMetal++;
-        System.out.println("Number of metal : " + this.nombreMetal);
-        System.out.println("Number of metal : " + this.nombreMetal);
-        System.out.println("Number of metal : " + this.nombreMetal);
-        System.out.println("Number of metal : " + this.nombreMetal);
     }
 
 

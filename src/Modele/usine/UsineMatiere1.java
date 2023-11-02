@@ -1,55 +1,3 @@
-// package modele.usine;
-
-// import java.util.ArrayList;
-
-// import javax.swing.ImageIcon;
-
-// import observerPattern.Observer;
-
-// public class UsineMatiere extends Usine implements Observer {
-//     int levelProduction;
-//     ImageIcon image;
-//     ImageIcon Vide = new ImageIcon(this.getClass().getResource("/ressources/UMP0%.png"));
-//     ImageIcon UnTiers = new ImageIcon(this.getClass().getResource("/ressources/UMP33%.png"));
-//     ImageIcon DeuxTiers = new ImageIcon(this.getClass().getResource("/ressources/UMP66%.png"));
-//     ImageIcon Plein = new ImageIcon(this.getClass().getResource("/ressources/UMP100%.png"));
-
-//     ArrayList<ImageIcon> imageIconsList = new ArrayList<>();
-
-//     public UsineMatiere(String type, String id, String x2, String y2) {
-//         super(type, id, x2, y2);
-//         this.imageIconsList.add(this.Vide);
-//         this.imageIconsList.add(this.UnTiers);
-//         this.imageIconsList.add(this.DeuxTiers);
-//         this.imageIconsList.add(this.Plein);
-//         this.image = this.image = this.imageIconsList.get(this.levelProduction);
-//         this.levelProduction = 0;
-//     }
-
-//     public ImageIcon getImage(){
-//         return this.image;
-//     }
-
-
-//     public void updateImage() {
-//         this.image = this.imageIconsList.get(this.levelProduction);
-//         this.levelProduction++;
-//         if (this.levelProduction > 3){
-//             this.levelProduction = 0;
-//         }
-        
-//     }
-
-//     @Override
-//     public void update() {
-//         // TODO Auto-generated method stub
-//         throw new UnsupportedOperationException("Unimplemented method 'update'");
-//     }
-
-// }
-
-
-
 package modele.usine;
 
 import java.awt.Point;
@@ -61,9 +9,10 @@ import composants.Metal;
 import observerPattern.Observer;
 
 public class UsineMatiere1 implements Observer {
+    private static boolean startProduction;
     private static UsineMatiere1 instance;
-    public static int usineMatiere2Compteur = 0;
-    public static final int usineMatiereInterval = 50;
+    public static int usineMatiereCompteur = 0;
+    public static final int usineMatiereInterval = 500;
     private ArrayList<Metal> metals = new ArrayList<>();
     
     
@@ -90,11 +39,14 @@ public class UsineMatiere1 implements Observer {
         this.images.add(this.Plein);
         this.image = this.Vide;
         this.levelProduction = 0;
-        this.metals.add(new Metal(new Point (32,32)));
+        this.startProduction = true;
     }
 
     public static void produiceMetal(){
-        instance.metals.add (new Metal (new Point(32,32)));
+        if (startProduction == true){
+            instance.metals.add (new Metal (new Point(32,32)));
+        }
+        
 
     }
 
@@ -109,19 +61,15 @@ public class UsineMatiere1 implements Observer {
 
 
 
-    public void updateImage() {
-        this.image = this.images.get(this.levelProduction);
-        this.levelProduction++;
-        if (this.levelProduction > 3){
-            this.levelProduction = 0;
+    public void updateImage(int level) {
+        if (startProduction == true){
+            this.image = this.images.get(level);
         }
-        
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+       this.startProduction = false;
     }
 
 }

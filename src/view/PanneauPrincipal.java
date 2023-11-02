@@ -11,17 +11,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import composants.Aile;
+import composants.Avion;
 // import composants.Aile;
 // import composants.Avion;
 import composants.Composant;
 import composants.Metal;
 //import composants.Moteur;
-
+import composants.Moteur;
+import modele.usine.Entrepot;
 import modele.usine.UsineAile;
+import modele.usine.UsineAile1;
+import modele.usine.UsineAssemblage;
 import modele.usine.UsineMatiere1;
 import modele.usine.UsineMatiere1;
 import modele.usine.UsineMatiere2;
 import modele.usine.UsineMatiere3;
+import modele.usine.UsineMoteur;
 
 public class PanneauPrincipal extends JPanel {
 
@@ -40,20 +45,17 @@ public class PanneauPrincipal extends JPanel {
 	// Import usine image
 	// ImageIcon i11 = new ImageIcon(this.usine11.getPath());
 	// Usine aile :
-	UsineAile usineAile = new UsineAile("wuwu", "wuwu", "32", "32");
 	UsineMatiere1 usineMatiere1 = UsineMatiere1.getInstance();
+	UsineMatiere2 usineMatiere2 = UsineMatiere2.getInstance(); 
+	UsineMatiere3 usineMatiere3 = UsineMatiere3.getInstance();
+	UsineAile1 usineAile = UsineAile1.getInstance();
+	UsineAssemblage usineAssemblage = UsineAssemblage.getInstance();
+	UsineMoteur usineMoteur = UsineMoteur.getInstance();
+	Entrepot entrepot = Entrepot.getInstance();
 
 	// Importer images de la demonstration :
 	ImageIcon e0 = new ImageIcon(this.getClass().getResource("/ressources/E0%.png"));// orange
-	ImageIcon ua0 = new ImageIcon(this.getClass().getResource("/ressources/UA0%.png"));// red
-	ImageIcon um0 = new ImageIcon(this.getClass().getResource("/ressources/UM0%.png"));// vert
-	ImageIcon ump0 = new ImageIcon(this.getClass().getResource("/ressources/UMP0%.png"));// bleu
-	ImageIcon ut0 = new ImageIcon(this.getClass().getResource("/ressources/UT0%.png"));// violet
-
-	// Metal
-	// Composant avion = new Avion(new Point(300, 192), "/ressources/avion.png");
-	// Composant aile = new Aile(new Point(258, 90), "/ressources/aile.png");
-	// Composant moteur = new Moteur(new Point(268, 300), "/ressources/moteur.png");
+	
 
 	public PanneauPrincipal() {
 
@@ -62,10 +64,6 @@ public class PanneauPrincipal extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		// On ajoute � la position le delta x et y de la vitesse
-		// this.position.translate(this.vitesse.x, this.vitesse.y);
-		// g.fillRect(this.position.x, this.position.y, this.taille, this.taille);
-
 		if (xml == false) {
 			g.drawLine(47, 47, 335, 47);
 			g.drawLine(175, 207, 335, 47);
@@ -75,54 +73,105 @@ public class PanneauPrincipal extends JPanel {
 			g.drawLine(335, 367, 559, 591);
 
 			this.usineMatiere1.getImage().paintIcon(this, g, 32, 32);
-			this.usineMatiere1.updateImage();
+			this.usineMatiere2.getImage().paintIcon(this, g, 96, 352);
+			this.usineMatiere2.getImage().paintIcon(this, g, 544, 576);
+
 			this.usineAile.getImage().paintIcon(this, g, 320, 32);
-			this.usineAile.updateImage();
+			this.usineAssemblage.getImage().paintIcon(this, g, 160, 192);
+			this.usineMoteur.getImage().paintIcon(this, g, 320, 352);
+			this.entrepot.getImage().paintIcon(this, g, 640, 192);
+		
 
-			UsineMatiere2.getInstance().getImage().paintIcon(this, g, 96, 352);
-			UsineMatiere3.getInstance().getImage().paintIcon(this, g, 544, 576);
-
-			this.e0.paintIcon(this, g, 640, 192);
-
-			// this.ump0.paintIcon(this, g, 96, 352);
-			// this.ump0.paintIcon(this, g, 544, 576);
-			this.ua0.paintIcon(this, g, 160, 192);
-			this.um0.paintIcon(this, g, 320, 352);
-
-			// this.avion.getComposant().paintIcon(this, g, this.avion.getPosition().x,
-			// this.avion.getPosition().y);
-			// this.aile.getComposant().paintIcon(this, g, this.aile.getPosition().x,
-			// this.aile.getPosition().y);
-			// this.moteur.getComposant().paintIcon(this, g, this.moteur.getPosition().x,
-			// this.moteur.getPosition().y);
+	
 
 			// Display and move metals :
 			for (int i = 0; i < (this.usineMatiere1.getMetals().size()); i++) {
-
 				Metal metal = this.usineMatiere1.getMetals().get(i);
-				System.out.println(metal);
-				
-				metal.addObserver(this.usineAile);
 				metal.getImage().paintIcon(this, g, metal.getPosition().x, metal.getPosition().y);
 				if (metal.getPosition().x < 320) {
 					metal.getPosition().translate(4, 0);
 					metal.checkPosition(this.usineAile);
-					System.out.println("pos met : " + metal.getPosition());
-					System.out.println("Pos Aile : " + this.usineAile.getPosition());
 				} else {
-					metal.setPosition(new Point(500, 500));
+					metal.setPosition(new Point(800, 800));
+					this.usineMatiere1.getMetals().remove(metal);
 				}
-				
-				
 			}
-			this.usineAile.produceAile();
+
 			for (int i = 0; i < (this.usineAile.getAiles().size()); i++) {
 				Aile aile = this.usineAile.getAiles().get(i);
 				aile.getImage().paintIcon(this, g, aile.getPosition().x,
 				aile.getPosition().y);
-				aile.getPosition().translate(-1, 1);
-
+			if (aile.getPosition().x > 160 && aile.getPosition().y < 192 ){
+				aile.getPosition().translate(-4, 4);
+				aile.checkPosition(this.usineAssemblage);
+			} else {
+				aile.setPosition(new Point(800, 800));
+				this.usineAile.getAiles().remove(aile);
 			}
+				
+			}
+
+
+
+				for (int i = 0; i < (this.usineMatiere2.getMetals().size()); i++) {
+				Metal metal = this.usineMatiere2.getMetals().get(i);
+				metal.getImage().paintIcon(this, g, metal.getPosition().x, metal.getPosition().y);
+				if (metal.getPosition().x < 320) {
+					metal.getPosition().translate(4, 0);
+					metal.checkPosition(this.usineMoteur);
+				} else {
+					metal.setPosition(new Point(800, 800));
+					this.usineMatiere2.getMetals().remove(metal);
+				}
+			}
+
+
+
+				for (int i = 0; i < (this.usineMatiere3.getMetals().size()); i++) {
+				Metal metal = this.usineMatiere3.getMetals().get(i);
+				metal.getImage().paintIcon(this, g, metal.getPosition().x, metal.getPosition().y);
+				if (metal.getPosition().x > 320) {
+					metal.getPosition().translate(-4, -4);
+					metal.checkPosition(this.usineMoteur);
+				} else {
+					metal.setPosition(new Point(800, 800));
+					this.usineMatiere3.getMetals().remove(metal);
+				}
+			}
+
+
+			for (int i = 0; i < (this.usineMoteur.getMoteurs().size()); i++) {
+				Moteur moteur = this.usineMoteur.getMoteurs().get(i);
+				moteur.getImage().paintIcon(this, g, moteur.getPosition().x,
+				moteur.getPosition().y);
+			if (moteur.getPosition().x > 160){
+				moteur.getPosition().translate(-8, -8);
+				moteur.checkPosition(this.usineAssemblage);
+			} else {
+				moteur.setPosition(new Point(800, 800));
+				this.usineMoteur.getMoteurs().remove(moteur);
+			}
+				
+			}
+
+
+
+			for (int i = 0; i < (this.usineAssemblage.getAvions().size()); i++) {
+				Avion avion = this.usineAssemblage.getAvions().get(i);
+				avion.getImage().paintIcon(this, g, avion.getPosition().x,
+				avion.getPosition().y);
+			if (avion.getPosition().x <640){
+				avion.getPosition().translate(4, 0);
+			} else {
+				avion.setPosition(new Point(800, 800));
+				this.usineAssemblage.getAvions().remove(avion);
+			}
+				
+			}
+
+
+
+
 
 		}
 

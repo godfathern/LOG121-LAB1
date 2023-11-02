@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 
 import modele.usine.Usine;
 import modele.usine.UsineAile;
+import modele.usine.UsineAile1;
+import modele.usine.UsineMoteur;
 import observerPattern.Observer;
 import observerPattern.Subject;
 
@@ -39,11 +41,16 @@ public class Metal extends Subject implements Composant {
     }
     
     
-    public void checkPosition(UsineAile usine){
-       if (this.getPosition().equals(usine.getPosition())){
-        this.notifyObservers();
+    public void checkPosition(UsineAile1 usine){
+       if (this.getPosition().x == usine.getPosition().x && this.getPosition().y == usine.getPosition().y){
+        UsineAile1.getInstance().update();
        }
     }
 
+        public void checkPosition(UsineMoteur usine){
+       if (this.getPosition().x == usine.getPosition().x && this.getPosition().y == usine.getPosition().y){
+        UsineMoteur.getInstance().update();
+       }
+    }
 
 }

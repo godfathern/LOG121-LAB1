@@ -1,11 +1,16 @@
 package strategyPattern;
 
+import modele.usine.Entrepot;
+
 public class VenteIntervalle implements StrategyVente{
 
+    int nombreAvionVendu = 2;
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+       int nombreAvion = Entrepot.getInstance().getNombreAvion();
+      if (nombreAvion>=2){
+        Entrepot.getInstance().setNombreAvion(nombreAvion-this.nombreAvionVendu);
+      }
     }
     
 }
