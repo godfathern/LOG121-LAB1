@@ -1,3 +1,21 @@
+/******************************************************
+Cours:   LOG121
+Session: A2023
+Groupe:  04
+Projet: Laboratoire #1
+Étudiant(e)s: Phan Tung, Bui
+              
+              
+Professeur : Bilal Alchalabi
+Nom du fichier: UsineAssemblage.java
+Date créé: 2023-10-01
+Date dern. modif. 2023-10-01
+*******************************************************
+Historique des modifications
+*******************************************************
+2023-10-01 Version initiale (et1)
+2023-10-26 Ajout de la fonction (et2)
+*******************************************************/  
 package modele.usine;
 
 import java.util.List;
@@ -14,7 +32,7 @@ import view.Environnement;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class UsineAssemblage {
+public class UsineAssemblage implements Observer {
 
     private List<Metal> metals = new ArrayList<>();
     public ArrayList<Avion> avions = new ArrayList<>();
@@ -25,6 +43,7 @@ public class UsineAssemblage {
     private static UsineAssemblage instance = new UsineAssemblage();
     public static final int usineAssemblageInterval = 550;
     public static int usineAssemblageCompteur = 0;
+    private boolean startProduction;
 
     private int levelProduction; // % temps nécessaire à la production a été écoulé
 
@@ -34,6 +53,7 @@ public class UsineAssemblage {
         this.nombreMoteur = 0;
         this.nombreAile = 0;
         this.position = new Point(160, 192);
+        this.startProduction = true;
     }
 
     public static  UsineAssemblage getInstance() {
@@ -64,10 +84,13 @@ public class UsineAssemblage {
     }
 
     public void produceAvion() {
-        if (this.nombreMoteur >= 4 && this.nombreAile >=2 ) {
+        if (this.nombreMoteur >= 4 && this.nombreAile >=2 && this.startProduction) {
             this.avions.add(new Avion(new Point(160,192)));
             this.setNombreMoteur(this.nombreMoteur-4);
             this.setNombreAile(this.nombreAile-2);
+            System.out.println("AAAAAAAAAAAAAA"+this.nombreAile);
+            System.out.println("AAAAAAAAAAAAAA"+this.nombreAile);
+            System.out.println("BBBBBBBBBBBBB" +this.nombreMoteur);
         }
     }
 
@@ -106,7 +129,7 @@ public class UsineAssemblage {
     }
 
     public void setNombreMoteur(int nombreMoteur) {
-        this.nombreMoteur = this.nombreMoteur;
+        this.nombreMoteur = nombreMoteur;
     }
 
     public Point getPosition() {
@@ -125,7 +148,7 @@ public class UsineAssemblage {
         this.levelProduction = levelProduction;
     }
 
-    public void update() {
+    public void updateA() {
         this.nombreAile++;
     }
 
@@ -133,5 +156,14 @@ public class UsineAssemblage {
         this.nombreMoteur++;
     }
 
+        @Override
+        public void update() {
+            if (Entrepot.getInstance().isEntrepotFull()){
+                this.startProduction = false;
+            }
+               if (!Entrepot.getInstance().isEntrepotFull()){
+                this.startProduction = true;
+            }
+        }
 
 }

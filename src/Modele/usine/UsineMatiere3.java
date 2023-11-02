@@ -1,3 +1,21 @@
+/******************************************************
+Cours:   LOG121
+Session: A2023
+Groupe:  04
+Projet: Laboratoire #1
+Étudiant(e)s: Phan Tung, Bui
+              
+              
+Professeur : Bilal Alchalabi
+Nom du fichier: UsineMatiere3.java
+Date créé: 2023-10-01
+Date dern. modif. 2023-10-01
+*******************************************************
+Historique des modifications
+*******************************************************
+2023-10-01 Version initiale (et1)
+2023-10-26 Ajout de la fonction (et2)
+*******************************************************/  
 package modele.usine;
 
 import java.awt.Point;
@@ -46,7 +64,7 @@ public class UsineMatiere3 implements Observer {
     }
 
     public static void produiceMetal(){
-        if (startProduction == true){
+        if (startProduction){
             instance.metals.add (new Metal (new Point(544,576)));
         }
         
@@ -65,7 +83,7 @@ public class UsineMatiere3 implements Observer {
 
 
     public void updateImage(int level) {
-        if (startProduction == true){
+        if (startProduction){
             this.image = this.images.get(level);
         }
     }
@@ -80,7 +98,12 @@ public class UsineMatiere3 implements Observer {
 
     @Override
     public void update() {
-       this.startProduction = false;
+        if (Entrepot.getInstance().isEntrepotFull()){
+            this.startProduction = false;
+        }
+           if (!Entrepot.getInstance().isEntrepotFull()){
+            this.startProduction = true;
+        }
     }
 
 }

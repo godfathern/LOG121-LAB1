@@ -1,3 +1,21 @@
+/******************************************************
+Cours:   LOG121
+Session: A2023
+Groupe:  04
+Projet: Laboratoire #1
+Étudiant(e)s: Phan Tung, Bui
+              
+              
+Professeur : Bilal Alchalabi
+Nom du fichier: Moteur.java
+Date créé: 2023-10-01
+Date dern. modif. 2023-10-01
+*******************************************************
+Historique des modifications
+*******************************************************
+2023-10-01 Version initiale (et1)
+2023-10-26 Ajout de la fonction (et2)
+*******************************************************/  
 package composants;
 
 import java.awt.Point;
@@ -43,7 +61,7 @@ public class Moteur extends Subject implements Composant {
     
     
     public void checkPosition(UsineAssemblage usine){
-       if (this.getPosition().x == usine.getPosition().x && this.getPosition().y == usine.getPosition().y){
+       if (this.getPosition().x == 160 ){
         UsineAssemblage.getInstance().updateMoteur();
        }
     }
